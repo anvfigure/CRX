@@ -12,6 +12,17 @@ local selectedPlayer = nil
 local loopTeleportEnabled = false
 local loopTeleportTarget = nil
 
+local function toggleAntiFling()
+    for _, player in pairs(game.Players:GetPlayers()) do
+    if player ~= speaker and player.Character then
+        for _, v in pairs(player.Character:GetDescendants()) do
+            if v:IsA("BasePart") then
+                v.CanCollide = state
+            end
+        end
+    end
+end
+
 local function tpPlayer()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = selectedPlayer.Character.HumanoidRootPart.CFrame
 end
@@ -191,6 +202,16 @@ local sitToggle = Tabs.Local:AddToggle("MyToggle",
     Default = false,
     Callback = function(state)
         game.Players.LocalPlayer.Character.Humanoid.Sit = state
+    end
+})
+
+local antfToggle = Tabs.Local:AddToggle("MyToggle", 
+{
+    Title = "Anti Fling", 
+    Description = "Never get flinged by skids again!",
+    Default = false,
+    Callback = function(state)
+        toggleAntiFling()
     end
 })
 
