@@ -45,25 +45,20 @@ local function toggleESP(state)
             if otherPlayer ~= game.Players.LocalPlayer and otherPlayer.Character then
                 local head = otherPlayer.Character:FindFirstChild("Head")
                 if head then
-                    -- Create BillboardGui
                     local billboard = Instance.new("BillboardGui")
                     billboard.Name = "ESP_Billboard"
                     billboard.Adornee = head
-                    billboard.Size = UDim2.new(2, 0, 2, 0) -- Size of ESP box
-                    billboard.AlwaysOnTop = true -- Ensures it's visible through walls
-                    billboard.LightInfluence = 0 -- Makes sure it isn't affected by lighting
-                    billboard.StudsOffset = Vector3.new(0, 2, 0) -- Adjusts position above head
+                    billboard.Size = UDim2.new(2, 0, 2, 0)
+                    billboard.AlwaysOnTop = true
+                    billboard.LightInfluence = 0
+                    billboard.StudsOffset = Vector3.new(0, 2, 0)
                     billboard.Parent = head
-
-                    -- Create a frame inside the BillboardGui
                     local frame = Instance.new("Frame")
                     frame.Size = UDim2.new(1, 0, 1, 0)
-                    frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red ESP color
-                    frame.BackgroundTransparency = 0.3 -- Adjust visibility
+                    frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+                    frame.BackgroundTransparency = 0.3 
                     frame.BorderSizePixel = 0
                     frame.Parent = billboard
-
-                    -- Remove ESP when player respawns
                     otherPlayer.CharacterAdded:Connect(function()
                         billboard:Destroy()
                     end)
@@ -71,7 +66,6 @@ local function toggleESP(state)
             end
         end
     else
-        -- Remove ESP when disabled
         for _, player in pairs(game.Players:GetPlayers()) do
             if player.Character then
                 local head = player.Character:FindFirstChild("Head")
