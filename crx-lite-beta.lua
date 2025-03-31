@@ -128,7 +128,7 @@ local function tpToolGive()
 end
 
 local Window = Fluent:CreateWindow({
-    Title = "--//CRX -- Lite//--",
+    Title = "-- CRX  Lite --",
     SubTitle = "by crxsvxv",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
